@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css" />
+    <link rel="stylesheet" href="./timetracking.css" />
+    <script src="https://trello.com/power-ups/power-up.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  </head>
+  
+  <body onload="loadTableFromTrello();">
+    
+    <div class="content" id="content">
+      <form id="trackForm">
+        <label for="datesubmit">Date to submit time:</label>
+        <input type="date" id="datesubmit" name="datesubmit" />
+        <label for="timesubmit">Hours to submit:</label>
+        <input type="number" id="timesubmit" name="timesubmit" />
+      </form>
+
+      <button onclick="addTrackingEntry();" id="addEntry" class="mod-primary">Add time entry</button>
+      
+      <button onclick="saveTableToTrello();" id="saveTable" class="mod-primary">Save and close</button>
+      
+      <button onclick="exportTableToCSV('table.csv');" id="testButton" class="testButton">Table load test</button>
+
+      <div class="storageVars">
+        <p id="tempVar"></p>
+        <p id="headerVar"></p>
+        <p id="nameVar"></p>
+        <p id="dateVar"></p>
+        <p id="timeVar"></p>        
+      </div>
+      
+    </div>
+
+    <div class="container">
+      <div id="table" class="table-editable">
+        <span class="table-add glyphicon glyphicon-plus">X</span>
+        <table class="table">
+          
+          <colgroup>
+            <col style="width:40%">
+            <col style="width:20%">
+            <col style="width:20%"> 
+            <col style="width:10%">
+            <col style="width:10%">
+          </colgroup>
+          
+          <tr>
+            <th class="nameHeader">Name</th>
+            <th class="dateHeader">Date</th>
+            <th class="timeHeader">Time spent [h]</th>
+            <th class="deleteHeader">Delete</th>
+            <th class="moveHeader">Move</th>
+          </tr>
+          <!-- This is our clonable table line -->
+          <tr class="hide">
+            <td contenteditable="true" class="name">Placeholder</td>
+            <td contenteditable="true" class="date">Placeholder</td>
+            <td contenteditable="true" class="time">0</td>            
+            <td class="delete">
+              <span class="table-remove glyphicon glyphicon-remove">&#10060;</span>
+            </td>
+            <td class="move">
+              <span class="table-up glyphicon glyphicon-arrow-up">&#129093;</span>
+              <span class="table-down glyphicon glyphicon-arrow-down">&#129095;</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <button onclick="exportTableToCSV('table.csv');" id="exportButton" class="exportButton">Export table to .CSV</button>
+      
+    </div>
+    
+    <script src="./js/tracksubmit.js"></script>
+    <script src="./js/tracktable.js"></script> 
+
+  </body>
+</html>
